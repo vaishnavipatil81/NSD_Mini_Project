@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#22213f">
+  <title>CampusCare | Smart Complaint Tracker</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#top"><span class="brand-mark">C</span><span>CampusCare<small>SMART CAMPUS SERVICES</small></span></a>
+    <div class="topbar-actions"><span class="topbar-note"><span class="live-dot"></span> Campus support portal</span><button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark mode">🌙 <span>Dark mode</span></button></div>
+  </header>
+
+  <main class="page" id="top">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">STUDENT SERVICES · MAINTENANCE</p>
+        <h1>A better campus<br><span>starts with a report.</span></h1>
+        <p class="hero-copy">Report a problem, follow its progress, and help make campus life better for everyone.</p>
+        <a class="hero-link" href="#submit">Submit a complaint <span>↘</span></a>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div>
+        <div class="art-building"><div class="building-roof"></div><div class="building-body"><div class="building-window"></div><div class="building-window"></div><div class="building-door"></div><div class="building-window"></div><div class="building-window"></div></div></div>
+        <div class="art-tag tag-one">✓ Issue tracked</div><div class="art-tag tag-two">↗ Better campus</div>
+      </div>
+    </section>
+
+    <section class="stats" aria-label="Complaint statistics">
+      <article class="stat-card"><span class="stat-icon purple">◎</span><div><p>Total reports</p><strong id="totalCount">0</strong></div></article>
+      <article class="stat-card"><span class="stat-icon orange">◷</span><div><p>Open</p><strong id="openCount">0</strong></div></article>
+      <article class="stat-card"><span class="stat-icon blue">↻</span><div><p>In progress</p><strong id="progressCount">0</strong></div></article>
+      <article class="stat-card"><span class="stat-icon green">✓</span><div><p>Resolved</p><strong id="resolvedCount">0</strong></div></article>
+    </section>
+
+    <section class="analytics-section panel" aria-labelledby="analyticsTitle">
+      <div class="section-heading analytics-heading"><div><p class="eyebrow">LIVE DATA · MONGODB AGGREGATION</p><h2 id="analyticsTitle">Complaint insights</h2><p class="muted">A quick view of campus issues and monthly reporting activity.</p></div><span class="insight-chip">● Live analytics</span></div>
+      <div class="analytics-grid">
+        <article class="chart-card"><div class="chart-heading"><div><h3>Reports by category</h3><p>Which issues are reported most?</p></div><span class="chart-icon">▥</span></div><div id="categoryChart" class="bar-chart"><p class="chart-empty">Loading category data…</p></div></article>
+        <article class="chart-card"><div class="chart-heading"><div><h3>Monthly trend</h3><p>Reports created over time</p></div><span class="chart-icon">↗</span></div><div id="monthlyChart" class="monthly-chart"><p class="chart-empty">Loading monthly data…</p></div></article>
+        <article class="resolution-card"><div class="resolution-icon">✓</div><div><p>Average resolution time</p><strong id="avgResolution">—</strong><span id="resolutionHint">Calculated from resolved reports</span></div></article>
+      </div>
+    </section>
+
+    <section class="content-grid">
+      <section class="panel form-panel" id="submit">
+        <div class="section-heading"><div><p class="eyebrow">MAKE YOUR VOICE HEARD</p><h2>Report an issue</h2></div><span class="step-pill">NEW REPORT</span></div>
+        <p class="muted">Share the details so the campus team can investigate.</p>
+        <form id="complaintForm">
+          <div class="field-row">
+            <label>Student name<input name="studentName" required maxlength="80" placeholder="e.g. Aditi Sharma"></label>
+            <label>Email address<input name="studentEmail" type="email" required maxlength="120" placeholder="you@college.edu"></label>
+          </div>
+          <label>Issue title<input name="title" required maxlength="100" placeholder="e.g. Projector not working"></label>
+          <div class="field-row">
+            <label>Category<select name="category" required><option value="">Select category</option><option>Electrical</option><option>Plumbing</option><option>Wi-Fi / Network</option><option>Classroom</option><option>Cleanliness</option><option>Furniture</option><option>Other</option></select></label>
+            <label>Priority<select name="priority"><option>Low</option><option selected>Medium</option><option>High</option></select></label>
+          </div>
+          <label>Location<input name="location" required maxlength="120" placeholder="e.g. Block B, Room 204"></label>
+          <label>Description<textarea name="description" required maxlength="1000" rows="4" placeholder="Describe the issue and when you noticed it..."></textarea></label>
+          <button class="primary-btn" type="submit">Submit report <span>→</span></button>
+          <p class="form-message" id="formMessage" role="status"></p>
+        </form>
+      </section>
+
+      <section class="panel reports-panel">
+        <div class="section-heading"><div><p class="eyebrow">CAMPUS OPERATIONS</p><h2>Recent reports</h2></div><button class="refresh-btn" id="refreshBtn" title="Refresh reports" aria-label="Refresh reports">↻</button></div>
+        <div class="filters">
+          <input id="searchInput" placeholder="Search reports..." aria-label="Search reports">
+          <select id="statusFilter" aria-label="Filter by status"><option>All</option><option>Open</option><option>In Progress</option><option>Resolved</option></select>
+        </div>
+        <div id="reportsList" class="reports-list"><div class="empty-state">Loading reports…</div></div>
+        <p class="list-footer">Showing up to 200 most recent reports</p>
+      </section>
+    </section>
+    <footer><span>CampusCare · Smart Campus Complaint Tracker</span><span>Built with Node.js + MongoDB</span></footer>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>

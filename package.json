@@ -1,0 +1,14 @@
+{
+  "name": "smart-campus-complaint-tracker",
+  "version": "1.0.0",
+  "description": "MongoDB NoSQL mini project for managing campus maintenance complaints",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "mongodb": "^6.12.0"
+  }
+}
